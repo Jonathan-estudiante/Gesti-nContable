@@ -3,13 +3,16 @@ package com.istloja.modelo;
 public class Persona {
    
     private int idPersona;
-    private int cedula;
+    private String cedula;
     private String nombres;
     private String apellidos;
     private String direccion;
     private String correo;
     private String telefono;
-
+//
+//    public Persona(int idPersona) {
+//        this.idPersona = idPersona;
+//    }
     public int getIdPersona() {
         return idPersona;
     }
@@ -18,11 +21,11 @@ public class Persona {
         this.idPersona = idPersona;
     }
 
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
@@ -64,6 +67,11 @@ public class Persona {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" + "idPersona=" + idPersona + ", cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + '}';
     }
     
     
