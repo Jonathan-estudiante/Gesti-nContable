@@ -90,7 +90,7 @@ public class gestionpersona extends JFrame {
         layout.putConstraint(SpringLayout.NORTH, label5, 300, SpringLayout.NORTH, panel);
         //etiqueta de correo
         layout.putConstraint(SpringLayout.WEST, label6, 780, SpringLayout.WEST, panel);
-        layout.putConstraint(SpringLayout.NORTH, label6, 340, SpringLayout.NORTH, panel);
+        layout.putConstraint(SpringLayout.NORTH, label6, 350, SpringLayout.NORTH, panel);
         //etiqueta de telefono
         layout.putConstraint(SpringLayout.WEST, label7, 780, SpringLayout.WEST, panel);
         layout.putConstraint(SpringLayout.NORTH, label7, 400, SpringLayout.NORTH, panel);

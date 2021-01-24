@@ -6,6 +6,7 @@ import com.istloja.controlador.PersonaEliminar;
 import com.istloja.controlador.Personabd;
 import com.istloja.modelo.Persona;
 import com.istloja.vistas.gestionpersona;
+import java.util.Scanner;
 
 public class Main {
 
@@ -41,6 +42,15 @@ public class Main {
 //        for (Persona arg : lista.obtenerPersona()) {
 //            System.out.println(arg);
 //        }
-        gestionpersona gp = new gestionpersona();
+//        gestionpersona gp = new gestionpersona();
+        Scanner entrada = new Scanner(System.in);
+        
+        System.out.println("Ingrese un numero");
+        int num = entrada.nextInt();
+        if (num/1000000000 != 0) {
+            System.out.println("su numero debe empezar por cero");
+        }else{
+            System.out.println("Numero correcto");
+        }
     }
 }
