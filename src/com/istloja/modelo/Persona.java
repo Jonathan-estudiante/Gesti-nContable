@@ -9,10 +9,7 @@ public class Persona {
     private String direccion;
     private String correo;
     private String telefono;
-//
-//    public Persona(int idPersona) {
-//        this.idPersona = idPersona;
-//    }
+    
     public int getIdPersona() {
         return idPersona;
     }
@@ -73,7 +70,4 @@ public class Persona {
     public String toString() {
         return "Persona{" + "cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + '}';
     }
-
-    
-    
 }

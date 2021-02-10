@@ -18,6 +18,7 @@ public class Personabd {
     Statement stm = null;
     ResultSet rs = null;
 
+    //Método para insertar, crear o guardar una persona
     public boolean crearPersona(Persona persona) {
         boolean registrar = false;
 
@@ -37,6 +38,7 @@ public class Personabd {
         return registrar;
     }
 
+    //Método para actualizar, modificar o editar una persona
     public boolean actualizarPersona(Persona persona) {
         boolean registrar = false;
 
@@ -56,6 +58,7 @@ public class Personabd {
         return registrar;
     }
 
+    //Método para quitar o eliminar una persona
     public boolean eliminarPersona(Persona persona) {
         boolean registrar = false;
 
@@ -75,6 +78,7 @@ public class Personabd {
         return registrar;
     }
 
+    //Método traer a todas las personas
     public List<Persona> obtenerPersona() {
 
         String sql = "SELECT * FROM bdejercicio1.persona;";
@@ -107,6 +111,7 @@ public class Personabd {
         return listapersona;
     }
 
+    //Método para buscar y traer a una persona a partir de su cédula
     public Persona BuscarCedula(String cedula) {
 
         Persona c = null;
@@ -133,7 +138,9 @@ public class Personabd {
         }
         return c;
     }
-        public Persona BuscarPorTelefono(String telefono) {
+
+    //Método para buscar y traer a una persona a partir de su número telefónico
+    public Persona BuscarPorTelefono(String telefono) {
         Persona c = null;
         String sql = "SELECT * FROM bdejercicio1.persona WHERE telefono = " + telefono + ";";
         try {
