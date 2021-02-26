@@ -60,9 +60,9 @@ public class Utilidades {
         }
         try {
             int validarNumero = Integer.parseInt(numero);
-            if (validarNumero / 1000000000 == 0 && validarNumero/100000000==9) {
+            if (validarNumero / 1000000000 == 0 && validarNumero / 100000000 == 9) {
                 return true;
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Su número debe empezar por '09'", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
 
@@ -85,5 +85,14 @@ public class Utilidades {
         return m.matches();
 
     }
-    
+    public boolean validarCodigo(String numero) {
+        try {
+            Integer.parseInt(numero);
+            return true;
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "El código solo debe tener números", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
 }

@@ -2,11 +2,12 @@ package com.istloja.conexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 
 public class BaseDatos {
 
-    private final String nombreBaseDatos = "bdEjercicio1";
+    private final String nombreBaseDatos = "bdejercicio1";
     private final String usuario= "root";
     private final String contraseña = "Jonathan1234";
     private final String lineaBaseConexion= "jdbc:mysql://localhost:3306/"+nombreBaseDatos+"?useUnicode=true&use"
@@ -16,10 +17,10 @@ public class BaseDatos {
         try{
             connect = (Connection)DriverManager.getConnection(lineaBaseConexion, usuario,contraseña);
             if (connect!=null) {
-                System.out.println("Éxito en la conexión.");
+              //  System.out.println("Éxito en la conexión.");
                
             }
-        }catch(Exception e){
+        }catch(SQLException e){
             System.out.println("Error al conectar:" + e.getMessage());
 
         }            

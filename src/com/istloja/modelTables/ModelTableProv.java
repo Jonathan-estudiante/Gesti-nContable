@@ -1,18 +1,20 @@
 package com.istloja.modelTables;
 
-import com.istloja.modelo.Persona;
+import com.istloja.modelo.Persona_Prov;
 import com.istloja.vistas.GestionContable;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-public class ModelTablePersona extends AbstractTableModel {
+public class ModelTableProv extends AbstractTableModel {
 
     //Arreglo con el nombre de las columnas
-    public String[] m_colNames = {"CÉDULA", "NOMBRES", "APELLIDOS", "DIRECCIÓN", "CORREO", "TELÉFONO"};
-    public List<Persona> personas;
-    private final GestionContable gestionContable;
+    public String[] m_colNames = {"CÓDIGO", "NOMBRE", "APELLIDO", "DIRECCIÓN", "TELEFONO", "CORREO", "SERVICIO"};
+    public List<Persona_Prov> personas;
 
-    public ModelTablePersona(List<Persona> personas, GestionContable gestionContable) {
+    private ComunicacionPersona comunicacionPersona;
+    private GestionContable gestionContable;
+
+    public ModelTableProv(List<Persona_Prov> personas, GestionContable gestionContable) {
         this.personas = personas;
         this.gestionContable = gestionContable;
     }
@@ -31,20 +33,23 @@ public class ModelTablePersona extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Persona persona = personas.get(rowIndex);
+        Persona_Prov persona = personas.get(rowIndex);
         switch (columnIndex) {
+
             case 0:
-                return persona.getCedula();
+                return persona.getCodigo();
             case 1:
-                return persona.getNombres();
+                return persona.getNombre();
             case 2:
-                return persona.getApellidos();
+                return persona.getApellido();
             case 3:
                 return persona.getDireccion();
             case 4:
-                return persona.getCorreo();
-            case 5:
                 return persona.getTelefono();
+            case 5:
+                return persona.getCorreo();
+            case 6:
+                return persona.getServicio();
 
         }
         return new String();
@@ -58,16 +63,15 @@ public class ModelTablePersona extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        gestionContable.clickPersona(personas.get(rowIndex));
+        gestionContable.clickPersonap(personas.get(rowIndex));
         return super.isCellEditable(rowIndex, columnIndex);//To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<Persona> getPersonas() {
+    public List<Persona_Prov> getPersonas() {
         return personas;
     }
 
-    public void setPersonas(List<Persona> personas) {
+    public void setPersonas(List<Persona_Prov> personas) {
         this.personas = personas;
     }
-
 }
