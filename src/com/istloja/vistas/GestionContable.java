@@ -1650,6 +1650,7 @@ public class GestionContable extends javax.swing.JFrame implements ComunicacionP
         personaEditarProv = p;
     }
 
+    @Override
     public void clickInventario(Inventario i) {
         text_co.setText(i.getCódigo_pro());
         text_des.setText(i.getDescripcion());

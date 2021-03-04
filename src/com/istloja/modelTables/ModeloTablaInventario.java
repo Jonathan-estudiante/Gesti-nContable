@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModeloTablaInventario extends AbstractTableModel{
     public String[] m_colNames = {"CÓDIGO", "DESCRIPCIÓN", "PRECIO COMPRA", "PRECIO VENTA", "CANTIDAD"};
     public List<Inventario> inventarios;
-    private GestionContable gestionContable;
+    private final GestionContable gestionContable;
 
     public ModeloTablaInventario(List<Inventario> inventarios, GestionContable gestionContable) {
         this.inventarios = inventarios;
