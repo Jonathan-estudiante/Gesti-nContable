@@ -33,9 +33,9 @@ public class Inventariobd {
     //Método para insertar, crear o guardar una persona**************************************************************************
     public boolean crearInventario(Inventario inventario) {
         boolean registrar = false;
-        String sql = "INSERT INTO bdejercicio1.inventario (id_inventario, código_pro, descripcion, precios_compra, precio_venta, can_productos) VALUES('"
-                + inventario.getId_inventario() + "', '" + inventario.getCódigo_pro() + "', '" + inventario.getDescripcion()
-                + "', '" + inventario.getPrecios_compra() + "', '" + inventario.getPrecios_venta() + "', '" + inventario.getCan_productos() + "')";
+        String sql = "INSERT INTO bdejercicio1.inventario (id_inventario, código_pro, can_productos, descripcion, precio_compra_sin_iva, precio_compra_con_iva,precio_mayorista,precio_cliente_fijo,precio_cliente_normal,fecha_caducidad,fecha_registro, fecha_actualizacion) VALUES('"
+                + inventario.getId_inventario() + "', '" + inventario.getCodigo_pro() + "', '" + inventario.getCan_productos()+ "', '" + inventario.getDescripcion()+ "', '" + inventario.getPrecios_compra_sin_iva()+ "', '" + inventario.getPrecios_compra_con_iva()+"', '"
+                + inventario.getPrecio_mayorista()+ "', '" + inventario.getPrecio_cliente_fijo()+ "', '" + inventario.getPrecio_cliente_normal()+ "', '" + inventario.getFecha_caducidad()+"', '"+inventario.getFecha_registro()+ "', '" + inventario.getFecha_actualizacion()+  "')";
         try {
             BaseDatos conexion = new BaseDatos();
             con = conexion.conexion();
@@ -45,7 +45,7 @@ public class Inventariobd {
             stm.close();
             con.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error" +"Aquiiiiiii"+ e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en crearIventario (Iventariobd)" + e.getMessage());
         }
         return registrar;
     }
@@ -64,11 +64,17 @@ public class Inventariobd {
             while (rs.next()) {
                 Inventario i = new Inventario();
                 i.setId_inventario(rs.getInt(1));
-                i.setCódigo_pro(rs.getString(2));
-                i.setDescripcion(rs.getString(3));
-                i.setPrecios_compra(rs.getString(4));
-                i.setPrecios_venta(rs.getString(5));
-                i.setCan_productos(rs.getString(6));
+                i.setCodigo_pro(rs.getString(2));
+                i.setCan_productos(rs.getInt(3));
+                i.setDescripcion(rs.getString(4));
+                i.setPrecios_compra_sin_iva(rs.getDouble(5));
+                i.setPrecios_compra_con_iva(rs.getDouble(6));
+                i.setPrecio_mayorista(rs.getDouble(7));
+                i.setPrecio_cliente_fijo(rs.getDouble(8));
+                i.setPrecio_cliente_normal(rs.getDouble(9));
+                i.setFecha_caducidad(rs.getDate(10));
+                i.setFecha_registro(rs.getDate(11));
+                i.setFecha_actualizacion(rs.getDate(12));
                 listainventario.add(i);
             }
             stm.close();
@@ -86,10 +92,11 @@ public class Inventariobd {
     public boolean actualizarInventario(Inventario inventario) {
         boolean registrar = false;
 
-        String sql = "UPDATE inventario SET código_pro = '" + inventario.getCódigo_pro() + "', descripcion = '" + inventario.getDescripcion()
-                + "',precios_compra = '" + inventario.getPrecios_compra() + "', precio_venta= '" + inventario.getPrecios_venta() + "', can_productos = '"
-                + inventario.getCan_productos() + "'WHERE id_inventario ="
-                + inventario.getId_inventario();
+        String sql = "UPDATE inventario SET código_pro = '" + inventario.getCodigo_pro() + "', can_productos = '" + inventario.getCan_productos()+ "',descripcion = '" + inventario.getDescripcion()
+                + "', precio_compra_sin_iva= '" + inventario.getPrecios_compra_sin_iva()+ "', precio_compra_con_iva = '" + inventario.getPrecios_compra_con_iva()+ "', precio_mayorista = '"
+                + inventario.getPrecio_mayorista()+ "', precio_cliente_fijo= '" + inventario.getPrecio_cliente_fijo()+ "', precio_cliente_normal = '" + inventario.getPrecio_cliente_normal()
+                + "', fecha_caducidad = '" + inventario.getFecha_caducidad()+ "', fecha_registro= '" + inventario.getFecha_registro()+ "', fecha_actualizacion = '" 
+                + inventario.getFecha_actualizacion()+ "'WHERE id_inventario =" + inventario.getId_inventario();
         try {
             BaseDatos conexion = new BaseDatos();
             con = conexion.conexion();
@@ -99,7 +106,7 @@ public class Inventariobd {
             stm.close();
             con.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en actualizar (Inventariobd)" + e.getMessage());
         }
         return registrar;
     }
@@ -134,11 +141,17 @@ public class Inventariobd {
             while (rs.next()) {
                 Inventario i = new Inventario();
                 i.setId_inventario(rs.getInt(1));
-                i.setCódigo_pro(rs.getString(2));
-                i.setDescripcion(rs.getString(3));
-                i.setPrecios_compra(rs.getString(4));
-                i.setPrecios_venta(rs.getString(5));
-                i.setCan_productos(rs.getString(6));
+                i.setCodigo_pro(rs.getString(2));
+                i.setCan_productos(rs.getInt(3));
+                i.setDescripcion(rs.getString(4));
+                i.setPrecios_compra_sin_iva(rs.getDouble(5));
+                i.setPrecios_compra_con_iva(rs.getDouble(6));
+                i.setPrecio_mayorista(rs.getDouble(7));
+                i.setPrecio_cliente_fijo(rs.getDouble(8));
+                i.setPrecio_cliente_normal(rs.getDouble(9));
+                i.setFecha_caducidad(rs.getDate(10));
+                i.setFecha_registro(rs.getDate(11));
+                i.setFecha_actualizacion(rs.getDate(12));
                 inventarioEncontradas.add(i);
             }
             stm.close();
@@ -161,11 +174,17 @@ public class Inventariobd {
             while (rs.next()) {
                 Inventario i = new Inventario();
                 i.setId_inventario(rs.getInt(1));
-                i.setCódigo_pro(rs.getString(2));
-                i.setDescripcion(rs.getString(3));
-                i.setPrecios_compra(rs.getString(4));
-                i.setPrecios_venta(rs.getString(5));
-                i.setCan_productos(rs.getString(6));
+                i.setCodigo_pro(rs.getString(2));
+                i.setCan_productos(rs.getInt(3));
+                i.setDescripcion(rs.getString(4));
+                i.setPrecios_compra_sin_iva(rs.getDouble(5));
+                i.setPrecios_compra_con_iva(rs.getDouble(6));
+                i.setPrecio_mayorista(rs.getDouble(7));
+                i.setPrecio_cliente_fijo(rs.getDouble(8));
+                i.setPrecio_cliente_normal(rs.getDouble(9));
+                i.setFecha_caducidad(rs.getDate(10));
+                i.setFecha_registro(rs.getDate(11));
+                i.setFecha_actualizacion(rs.getDate(12));
                 inventarioEncontradas.add(i);
             }
             stm.close();
@@ -177,10 +196,10 @@ public class Inventariobd {
         return inventarioEncontradas;
     }
 
-    public List<Inventario> getInventarioPreciosCompra(String precios_compra) {
+    public List<Inventario> getInventarioPreciosComprasSinIva(String precios_compra_sin_iva) {
 
         List<Inventario> inventarioEncontradas = new ArrayList<>();
-        String sql = "SELECT * FROM bdejercicio1.inventario WHERE precios_compra LIKE \"%" + precios_compra + "%\"";
+        String sql = "SELECT * FROM bdejercicio1.inventario WHERE precio_compra_sin_iva LIKE \"%" + precios_compra_sin_iva + "%\"";
         try {
             con = new BaseDatos().conexion();
             stm = con.createStatement();
@@ -188,11 +207,17 @@ public class Inventariobd {
             while (rs.next()) {
                 Inventario i = new Inventario();
                 i.setId_inventario(rs.getInt(1));
-                i.setCódigo_pro(rs.getString(2));
-                i.setDescripcion(rs.getString(3));
-                i.setPrecios_compra(rs.getString(4));
-                i.setPrecios_venta(rs.getString(5));
-                i.setCan_productos(rs.getString(6));
+                i.setCodigo_pro(rs.getString(2));
+                i.setCan_productos(rs.getInt(3));
+                i.setDescripcion(rs.getString(4));
+                i.setPrecios_compra_sin_iva(rs.getDouble(5));
+                i.setPrecios_compra_con_iva(rs.getDouble(6));
+                i.setPrecio_mayorista(rs.getDouble(7));
+                i.setPrecio_cliente_fijo(rs.getDouble(8));
+                i.setPrecio_cliente_normal(rs.getDouble(9));
+                i.setFecha_caducidad(rs.getDate(10));
+                i.setFecha_registro(rs.getDate(11));
+                i.setFecha_actualizacion(rs.getDate(12));
                 inventarioEncontradas.add(i);
             }
             stm.close();
@@ -204,10 +229,10 @@ public class Inventariobd {
         return inventarioEncontradas;
     }
 
-    public List<Inventario> getInventarioPreciosVentas(String precios_venta) {
+    public List<Inventario> getInventarioPreciosComprasConIva(String precios_compra_con_iva) {
 
         List<Inventario> inventarioEncontradas = new ArrayList<>();
-        String sql = "SELECT * FROM bdejercicio1.inventario WHERE precio_venta LIKE \"%" + precios_venta + "%\"";
+        String sql = "SELECT * FROM bdejercicio1.inventario WHERE precios_compra_con_iva LIKE \"%" + precios_compra_con_iva + "%\"";
         try {
             con = new BaseDatos().conexion();
             stm = con.createStatement();
@@ -215,11 +240,17 @@ public class Inventariobd {
             while (rs.next()) {
                 Inventario i = new Inventario();
                 i.setId_inventario(rs.getInt(1));
-                i.setCódigo_pro(rs.getString(2));
-                i.setDescripcion(rs.getString(3));
-                i.setPrecios_compra(rs.getString(4));
-                i.setPrecios_venta(rs.getString(5));
-                i.setCan_productos(rs.getString(6));
+                i.setCodigo_pro(rs.getString(2));
+                i.setCan_productos(rs.getInt(3));
+                i.setDescripcion(rs.getString(4));
+                i.setPrecios_compra_sin_iva(rs.getDouble(5));
+                i.setPrecios_compra_con_iva(rs.getDouble(6));
+                i.setPrecio_mayorista(rs.getDouble(7));
+                i.setPrecio_cliente_fijo(rs.getDouble(8));
+                i.setPrecio_cliente_normal(rs.getDouble(9));
+                i.setFecha_caducidad(rs.getDate(10));
+                i.setFecha_registro(rs.getDate(11));
+                i.setFecha_actualizacion(rs.getDate(12));
                 inventarioEncontradas.add(i);
             }
             stm.close();
@@ -242,11 +273,17 @@ public class Inventariobd {
             while (rs.next()) {
                 Inventario i = new Inventario();
                 i.setId_inventario(rs.getInt(1));
-                i.setCódigo_pro(rs.getString(2));
-                i.setDescripcion(rs.getString(3));
-                i.setPrecios_compra(rs.getString(4));
-                i.setPrecios_venta(rs.getString(5));
-                i.setCan_productos(rs.getString(6));
+                i.setCodigo_pro(rs.getString(2));
+                i.setCan_productos(rs.getInt(3));
+                i.setDescripcion(rs.getString(4));
+                i.setPrecios_compra_sin_iva(rs.getDouble(5));
+                i.setPrecios_compra_con_iva(rs.getDouble(6));
+                i.setPrecio_mayorista(rs.getDouble(7));
+                i.setPrecio_cliente_fijo(rs.getDouble(8));
+                i.setPrecio_cliente_normal(rs.getDouble(9));
+                i.setFecha_caducidad(rs.getDate(10));
+                i.setFecha_registro(rs.getDate(11));
+                i.setFecha_actualizacion(rs.getDate(12));
                 inventarioEncontradas.add(i);
             }
             stm.close();

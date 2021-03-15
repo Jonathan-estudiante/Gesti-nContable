@@ -1,5 +1,7 @@
 package com.istloja.modelo;
 
+import java.util.Date;
+
 public class Persona {
    
     private int idPersona;
@@ -9,7 +11,24 @@ public class Persona {
     private String direccion;
     private String correo;
     private String telefono;
-    
+    private Date fecha_registro;
+    private int genero;
+
+    public Persona(int idPersona, String cedula, String nombres, String apellidos, String direccion, String correo, String telefono, Date fecha_registro, int genero) {
+        this.idPersona = idPersona;
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.fecha_registro = fecha_registro;
+        this.genero = genero;
+    }
+
+    public Persona() {
+    }
+
     public int getIdPersona() {
         return idPersona;
     }
@@ -66,8 +85,25 @@ public class Persona {
         this.telefono = telefono;
     }
 
+    public Date getFecha_registro() {
+        return fecha_registro;
+    }
+
+    public void setFecha_registro(Date fecha_registro) {
+        this.fecha_registro = fecha_registro;
+    }
+
+    public int getGenero() {
+        return genero;
+    }
+
+    public void setGenero(int genero) {
+        this.genero = genero;
+    }
+
     @Override
     public String toString() {
-        return "Persona{" + "cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + '}';
+        return "Persona{" + "idPersona=" + idPersona + ", cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + ", fecha_registro=" + fecha_registro + ", genero=" + genero + '}';
     }
+    
 }

@@ -25,10 +25,9 @@ public class PersonabdProv {
     public boolean crearPersona(Persona_Prov persona_p) {
         boolean registrar = false;
 
-        String sql = "INSERT INTO bdejercicio1.proveedores (idproveedores, codigo, nombre, apellido, direccion, telefono, correo, servicio) VALUES('"
-                + String.valueOf(persona_p.getIdprov()) + "', '" + persona_p.getCodigo() + "', '" + persona_p.getNombre()
-                + "', '" + persona_p.getApellido() + "', '" + persona_p.getDireccion() + "', '" + persona_p.getTelefono()
-                + "','" + persona_p.getCorreo() + "','" + persona_p.getServicio() + "')";
+        String sql = "INSERT INTO bdejercicio1.proveedores (id_proveedores, ruc, razon_social, tipo_actividad, nombre_representante_legal, apellido_representante_legal, telefono, correo, direccion) VALUES('"
+                + String.valueOf(persona_p.getIdprov()) + "', '" + persona_p.getRuc() + "', '" + persona_p.getRazon_social() + "', '" + persona_p.getTipo_actividad() + "', '" + persona_p.getNombre_representante() 
+                + "', '" + persona_p.getApellido_representante() + "','" + persona_p.getTelefono() + "','" + persona_p.getCorreo() +"','"+ persona_p.getDireccion() + "')";
         try {
             BaseDatos conexion = new BaseDatos();
             con = conexion.conexion();
@@ -38,17 +37,16 @@ public class PersonabdProv {
             stm.close();
             con.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error en guardar (PersonabdProv)" + e.getMessage());
         }
         return registrar;
     }
     //Método para buscar y traer a un proveedor a partir de su codigo
 
-    public Persona_Prov BuscarCodigo(String codigo) {
+    public Persona_Prov BuscarCodigo(String ruc) {
 
         Persona_Prov c = null;
-        String sql = "SELECT * FROM bdejercicio1.proveedores WHERE codigo LIKE " + codigo + ";";
+        String sql = "SELECT * FROM bdejercicio1.proveedores WHERE ruc LIKE " + ruc + ";";
         try {
             con = new BaseDatos().conexion();
             stm = con.createStatement();
@@ -56,13 +54,14 @@ public class PersonabdProv {
             while (rs.next()) {
                 c = new Persona_Prov();
                 c.setIdprov(rs.getInt(1));
-                c.setCodigo(rs.getString(2));
-                c.setNombre(rs.getString(3));
-                c.setApellido(rs.getString(4));
-                c.setDireccion(rs.getString(5));
-                c.setTelefono(rs.getString(6));
-                c.setCorreo(rs.getString(7));
-                c.setServicio(rs.getString(8));
+                c.setRuc(rs.getString(2));
+                c.setRazon_social(rs.getString(3));
+                c.setTipo_actividad(rs.getString(4));
+                c.setNombre_representante(rs.getString(5));
+                c.setApellido_representante(rs.getString(6));
+                c.setTelefono(rs.getString(7));
+                c.setCorreo(rs.getString(8));
+                c.setDireccion(rs.getString(9));
             }
             stm.close();
             rs.close();
@@ -86,13 +85,14 @@ public class PersonabdProv {
             while (rs.next()) {
                 Persona_Prov p = new Persona_Prov();
                 p.setIdprov(rs.getInt(1));
-                p.setCodigo(rs.getString(2));
-                p.setNombre(rs.getString(3));
-                p.setApellido(rs.getString(4));
-                p.setDireccion(rs.getString(5));
-                p.setTelefono(rs.getString(6));
-                p.setCorreo(rs.getString(7));
-                p.setServicio(rs.getString(8));
+                p.setRuc(rs.getString(2));
+                p.setRazon_social(rs.getString(3));
+                p.setTipo_actividad(rs.getString(4));
+                p.setNombre_representante(rs.getString(5));
+                p.setApellido_representante(rs.getString(6));
+                p.setTelefono(rs.getString(7));
+                p.setCorreo(rs.getString(8));
+                p.setDireccion(rs.getString(9));
                 listapersona.add(p);
             }
             stm.close();
@@ -110,10 +110,10 @@ public class PersonabdProv {
     public boolean actualizarPersona(Persona_Prov persona) {
         boolean registrar = false;
 
-        String sql = "UPDATE proveedores SET codigo = '" + persona.getCodigo() + "', nombre = '" + persona.getNombre()
-                + "',apellido = '" + persona.getApellido() + "', direccion= '" + persona.getDireccion() + "', telefono = '"
-                + persona.getTelefono() + "', correo = '" + persona.getCorreo() + "', servicio = '" + persona.getServicio()
-                + "'WHERE idproveedores =" + String.valueOf(persona.getIdprov());
+        String sql = "UPDATE proveedores SET ruc = '" + persona.getRuc()+ "', razon_social = '" + persona.getRazon_social() + "',tipo_actividad = '" 
+                + persona.getTipo_actividad()+ "', nombre_representante_legal= '" + persona.getNombre_representante()+ "', apellido_representante_legal = '"
+                + persona.getApellido_representante()+ "', telefono = '" + persona.getTelefono()+ "', correo = '" + persona.getCorreo()+ "', direccion = '" 
+                + persona.getDireccion()+ "'WHERE id_proveedores =" + String.valueOf(persona.getIdprov());
         try {
             BaseDatos conexion = new BaseDatos();
             con = conexion.conexion();
@@ -123,7 +123,7 @@ public class PersonabdProv {
             stm.close();
             con.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en actualizar (PersonabdProv)" + e.getMessage());
         }
         return registrar;
     }
@@ -132,7 +132,7 @@ public class PersonabdProv {
     public boolean eliminarPersona(Persona_Prov persona) {
         boolean registrar = false;
 
-        String sql = "DELETE FROM proveedores WHERE idproveedores=" + String.valueOf(persona.getIdprov());
+        String sql = "DELETE FROM proveedores WHERE id_proveedores=" + String.valueOf(persona.getIdprov());
         try {
             BaseDatos conexion = new BaseDatos();
             con = conexion.conexion();
@@ -147,10 +147,10 @@ public class PersonabdProv {
         return registrar;
     }
 
-    public List<Persona_Prov> getProveedorCodigo(String codigo) {
+    public List<Persona_Prov> getProveedorCodigo(String ruc) {
 
         List<Persona_Prov> proveedoresEncontrados = new ArrayList<>();
-        String sql = "SELECT * FROM bdejercicio1.proveedores WHERE codigo LIKE \"%" + codigo + "%\"";
+        String sql = "SELECT * FROM bdejercicio1.proveedores WHERE ruc LIKE \"%" + ruc + "%\"";
         try {
             con = new BaseDatos().conexion();
             stm = con.createStatement();
@@ -158,13 +158,14 @@ public class PersonabdProv {
             while (rs.next()) {
                 Persona_Prov c = new Persona_Prov();
                 c.setIdprov(rs.getInt(1));
-                c.setCodigo(rs.getString(2));
-                c.setNombre(rs.getString(3));
-                c.setApellido(rs.getString(4));
-                c.setDireccion(rs.getString(5));
-                c.setTelefono(rs.getString(6));
-                c.setCorreo(rs.getString(7));
-                c.setServicio(rs.getString(8));
+                c.setRuc(rs.getString(2));
+                c.setRazon_social(rs.getString(3));
+                c.setTipo_actividad(rs.getString(4));
+                c.setNombre_representante(rs.getString(5));
+                c.setApellido_representante(rs.getString(6));
+                c.setTelefono(rs.getString(7));
+                c.setCorreo(rs.getString(8));
+                c.setDireccion(rs.getString(9));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -179,7 +180,7 @@ public class PersonabdProv {
     public List<Persona_Prov> getProveedorNombre(String nombre) {
 
         List<Persona_Prov> proveedoresEncontrados = new ArrayList<>();
-        String sql = "SELECT * FROM bdejercicio1.proveedores WHERE nombre LIKE \"%" + nombre + "%\"";
+        String sql = "SELECT * FROM bdejercicio1.proveedores WHERE nombre_representante_legal LIKE \"%" + nombre + "%\"";
         try {
             con = new BaseDatos().conexion();
             stm = con.createStatement();
@@ -187,13 +188,14 @@ public class PersonabdProv {
             while (rs.next()) {
                 Persona_Prov c = new Persona_Prov();
                 c.setIdprov(rs.getInt(1));
-                c.setCodigo(rs.getString(2));
-                c.setNombre(rs.getString(3));
-                c.setApellido(rs.getString(4));
-                c.setDireccion(rs.getString(5));
-                c.setTelefono(rs.getString(6));
-                c.setCorreo(rs.getString(7));
-                c.setServicio(rs.getString(8));
+                c.setRuc(rs.getString(2));
+                c.setRazon_social(rs.getString(3));
+                c.setTipo_actividad(rs.getString(4));
+                c.setNombre_representante(rs.getString(5));
+                c.setApellido_representante(rs.getString(6));
+                c.setTelefono(rs.getString(7));
+                c.setCorreo(rs.getString(8));
+                c.setDireccion(rs.getString(9));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -208,7 +210,7 @@ public class PersonabdProv {
     public List<Persona_Prov> getProveedorApellido(String apellido) {
 
         List<Persona_Prov> proveedoresEncontrados = new ArrayList<>();
-        String sql = "SELECT * FROM bdejercicio1.proveedores WHERE apellido LIKE \"%" + apellido + "%\"";
+        String sql = "SELECT * FROM bdejercicio1.proveedores WHERE apellido_representante_legal LIKE \"%" + apellido + "%\"";
         try {
             con = new BaseDatos().conexion();
             stm = con.createStatement();
@@ -216,13 +218,14 @@ public class PersonabdProv {
             while (rs.next()) {
                 Persona_Prov c = new Persona_Prov();
                 c.setIdprov(rs.getInt(1));
-                c.setCodigo(rs.getString(2));
-                c.setNombre(rs.getString(3));
-                c.setApellido(rs.getString(4));
-                c.setDireccion(rs.getString(5));
-                c.setTelefono(rs.getString(6));
-                c.setCorreo(rs.getString(7));
-                c.setServicio(rs.getString(8));
+                c.setRuc(rs.getString(2));
+                c.setRazon_social(rs.getString(3));
+                c.setTipo_actividad(rs.getString(4));
+                c.setNombre_representante(rs.getString(5));
+                c.setApellido_representante(rs.getString(6));
+                c.setTelefono(rs.getString(7));
+                c.setCorreo(rs.getString(8));
+                c.setDireccion(rs.getString(9));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -245,13 +248,14 @@ public class PersonabdProv {
             while (rs.next()) {
                 Persona_Prov c = new Persona_Prov();
                 c.setIdprov(rs.getInt(1));
-                c.setCodigo(rs.getString(2));
-                c.setNombre(rs.getString(3));
-                c.setApellido(rs.getString(4));
-                c.setDireccion(rs.getString(5));
-                c.setTelefono(rs.getString(6));
-                c.setCorreo(rs.getString(7));
-                c.setServicio(rs.getString(8));
+                c.setRuc(rs.getString(2));
+                c.setRazon_social(rs.getString(3));
+                c.setTipo_actividad(rs.getString(4));
+                c.setNombre_representante(rs.getString(5));
+                c.setApellido_representante(rs.getString(6));
+                c.setTelefono(rs.getString(7));
+                c.setCorreo(rs.getString(8));
+                c.setDireccion(rs.getString(9));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -274,13 +278,14 @@ public class PersonabdProv {
             while (rs.next()) {
                 Persona_Prov c = new Persona_Prov();
                 c.setIdprov(rs.getInt(1));
-                c.setCodigo(rs.getString(2));
-                c.setNombre(rs.getString(3));
-                c.setApellido(rs.getString(4));
-                c.setDireccion(rs.getString(5));
-                c.setTelefono(rs.getString(6));
-                c.setCorreo(rs.getString(7));
-                c.setServicio(rs.getString(8));
+                c.setRuc(rs.getString(2));
+                c.setRazon_social(rs.getString(3));
+                c.setTipo_actividad(rs.getString(4));
+                c.setNombre_representante(rs.getString(5));
+                c.setApellido_representante(rs.getString(6));
+                c.setTelefono(rs.getString(7));
+                c.setCorreo(rs.getString(8));
+                c.setDireccion(rs.getString(9));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -303,13 +308,14 @@ public class PersonabdProv {
             while (rs.next()) {
                 Persona_Prov c = new Persona_Prov();
                 c.setIdprov(rs.getInt(1));
-                c.setCodigo(rs.getString(2));
-                c.setNombre(rs.getString(3));
-                c.setApellido(rs.getString(4));
-                c.setDireccion(rs.getString(5));
-                c.setTelefono(rs.getString(6));
-                c.setCorreo(rs.getString(7));
-                c.setServicio(rs.getString(8));
+                c.setRuc(rs.getString(2));
+                c.setRazon_social(rs.getString(3));
+                c.setTipo_actividad(rs.getString(4));
+                c.setNombre_representante(rs.getString(5));
+                c.setApellido_representante(rs.getString(6));
+                c.setTelefono(rs.getString(7));
+                c.setCorreo(rs.getString(8));
+                c.setDireccion(rs.getString(9));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -324,7 +330,7 @@ public class PersonabdProv {
     public List<Persona_Prov> getProveedorServicio(String servicio) {
 
         List<Persona_Prov> proveedoresEncontrados = new ArrayList<>();
-        String sql = "SELECT * FROM bdejercicio1.proveedores WHERE servicio LIKE \"%" + servicio + "%\"";
+        String sql = "SELECT * FROM bdejercicio1.proveedores WHERE razon_social LIKE \"%" + servicio + "%\"";
         try {
             con = new BaseDatos().conexion();
             stm = con.createStatement();
@@ -332,13 +338,14 @@ public class PersonabdProv {
             while (rs.next()) {
                 Persona_Prov c = new Persona_Prov();
                 c.setIdprov(rs.getInt(1));
-                c.setCodigo(rs.getString(2));
-                c.setNombre(rs.getString(3));
-                c.setApellido(rs.getString(4));
-                c.setDireccion(rs.getString(5));
-                c.setTelefono(rs.getString(6));
-                c.setCorreo(rs.getString(7));
-                c.setServicio(rs.getString(8));
+                c.setRuc(rs.getString(2));
+                c.setRazon_social(rs.getString(3));
+                c.setTipo_actividad(rs.getString(4));
+                c.setNombre_representante(rs.getString(5));
+                c.setApellido_representante(rs.getString(6));
+                c.setTelefono(rs.getString(7));
+                c.setCorreo(rs.getString(8));
+                c.setDireccion(rs.getString(9));
                 proveedoresEncontrados.add(c);
             }
             stm.close();

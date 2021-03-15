@@ -2,31 +2,35 @@ package com.istloja.vistas;
 
 import com.istloja.modelo.Persona;
 import com.istloja.utilidad.Utilidades;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import  javax.swing.JTextField ;
+import javax.swing.JTextField;
 
 public class GestiónPersona {
-    
+
     private JTextField txt_cedula;
     private JTextField txt_nombre;
     private JTextField txt_apellido;
     private JTextField txt_direccion;
     private JTextField txt_correo;
     private JTextField txt_telefono;
+    private JComboBox txt_genero;
     private Utilidades utilidades;
     private JFrame frameGestionContable;
 
-    public GestiónPersona(JTextField txt_cedula, JTextField txt_nombre, JTextField txt_apellido, JTextField txt_direccion, JTextField txt_correo, JTextField txt_telefono, Utilidades utilidades, JFrame frameGestionContable) {
+    public GestiónPersona(JTextField txt_cedula, JTextField txt_nombre, JTextField txt_apellido, JTextField txt_direccion, JTextField txt_correo, JTextField txt_telefono, JComboBox txt_genero, Utilidades utilidades, JFrame frameGestionContable) {
         this.txt_cedula = txt_cedula;
         this.txt_nombre = txt_nombre;
         this.txt_apellido = txt_apellido;
         this.txt_direccion = txt_direccion;
         this.txt_correo = txt_correo;
         this.txt_telefono = txt_telefono;
+        this.txt_genero = txt_genero;
         this.utilidades = utilidades;
         this.frameGestionContable = frameGestionContable;
     }
+
 
     public JTextField getTxt_cedula() {
         return txt_cedula;
@@ -76,10 +80,18 @@ public class GestiónPersona {
         this.txt_telefono = txt_telefono;
     }
 
+    public JComboBox getTxt_genero() {
+        return txt_genero;
+    }
+
+    public void setTxt_genero(JComboBox txt_genero) {
+        this.txt_genero = txt_genero;
+    }
+    
     public Utilidades getUtilidades() {
         return utilidades;
     }
-
+    
     public void setUtilidades(Utilidades utilidades) {
         this.utilidades = utilidades;
     }
@@ -99,7 +111,9 @@ public class GestiónPersona {
         txt_direccion.setText("");
         txt_correo.setText("");
         txt_telefono.setText("");
+        txt_genero.setSelectedIndex(0);
     }
+
     public Persona guardarEditar() {
         if (txt_cedula.getText().isEmpty()) {
             JOptionPane.showMessageDialog(frameGestionContable, "El campo cédula no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);

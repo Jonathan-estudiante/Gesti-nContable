@@ -8,7 +8,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModelTableProv extends AbstractTableModel {
 
     //Arreglo con el nombre de las columnas
-    public String[] m_colNames = {"CÓDIGO", "NOMBRE", "APELLIDO", "DIRECCIÓN", "TELEFONO", "CORREO", "SERVICIO"};
+    public String[] m_colNames = {"RUC", "RAZÓN SOCIAL","TIPO DE ACTIVIDAD", "NOMBRE REPRESENTANTE", "APELLIDO REPRESENTANTE", "TELEFONO", "CORREO", "DIRECCION"};
     public List<Persona_Prov> personas;
 
     private ComunicacionPersona comunicacionPersona;
@@ -37,19 +37,21 @@ public class ModelTableProv extends AbstractTableModel {
         switch (columnIndex) {
 
             case 0:
-                return persona.getCodigo();
+                return persona.getRuc();
             case 1:
-                return persona.getNombre();
+                return persona.getRazon_social();
             case 2:
-                return persona.getApellido();
+                return persona.getTipo_actividad();
             case 3:
-                return persona.getDireccion();
+                return persona.getNombre_representante();
             case 4:
-                return persona.getTelefono();
+                return persona.getApellido_representante();
             case 5:
-                return persona.getCorreo();
+                return persona.getTelefono();
             case 6:
-                return persona.getServicio();
+                return persona.getCorreo();
+            case 7:
+                return persona.getDireccion();
 
         }
         return new String();

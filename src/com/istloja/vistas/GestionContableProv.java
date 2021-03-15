@@ -17,58 +17,68 @@ import javax.swing.JTextField;
  */
 public class GestionContableProv {
 
-    private JTextField txt_co;
-    private JTextField txt_no;
-    private JTextField txt_ap;
-    private JTextField txt_di;
+    private JTextField txt_ruc;
+    private JTextField txt_r_s;
+    private JTextField txt_t_a;
+    private JTextField txt_n_r_l;
+    private JTextField txt_a_r_l;
     private JTextField txt_te;
-    private JTextField txt_cr;
-    private JTextField txt_se;
+    private JTextField txt_cor;
+    private JTextField txt_di;
     private Utilidades utilidades;
     private JFrame frameGestionContable;
 
-    public GestionContableProv(JTextField txt_co, JTextField txt_no, JTextField txt_ap, JTextField txt_di, JTextField txt_te, JTextField txt_cr, JTextField txt_se, Utilidades utilidades, JFrame frameGestionContable) {
-        this.txt_co = txt_co;
-        this.txt_no = txt_no;
-        this.txt_ap = txt_ap;
-        this.txt_di = txt_di;
+    public GestionContableProv(JTextField txt_ruc, JTextField txt_r_s, JTextField txt_t_a, JTextField txt_n_r_l, JTextField txt_a_r_l, JTextField txt_te, JTextField txt_cor, JTextField txt_di, Utilidades utilidades, JFrame frameGestionContable) {
+        this.txt_ruc = txt_ruc;
+        this.txt_r_s = txt_r_s;
+        this.txt_t_a = txt_t_a;
+        this.txt_n_r_l = txt_n_r_l;
+        this.txt_a_r_l = txt_a_r_l;
         this.txt_te = txt_te;
-        this.txt_cr = txt_cr;
-        this.txt_se = txt_se;
+        this.txt_cor = txt_cor;
+        this.txt_di = txt_di;
         this.utilidades = utilidades;
         this.frameGestionContable = frameGestionContable;
     }
 
-    public JTextField getTxt_co() {
-        return txt_co;
+    public JTextField getTxt_ruc() {
+        return txt_ruc;
     }
 
-    public void setTxt_co(JTextField txt_co) {
-        this.txt_co = txt_co;
+    public void setTxt_ruc(JTextField txt_ruc) {
+        this.txt_ruc = txt_ruc;
     }
 
-    public JTextField getTxt_no() {
-        return txt_no;
+    public JTextField getTxt_r_s() {
+        return txt_r_s;
     }
 
-    public void setTxt_no(JTextField txt_no) {
-        this.txt_no = txt_no;
+    public void setTxt_r_s(JTextField txt_r_s) {
+        this.txt_r_s = txt_r_s;
     }
 
-    public JTextField getTxt_ap() {
-        return txt_ap;
+    public JTextField getTxt_t_a() {
+        return txt_t_a;
     }
 
-    public void setTxt_ap(JTextField txt_ap) {
-        this.txt_ap = txt_ap;
+    public void setTxt_t_a(JTextField txt_t_a) {
+        this.txt_t_a = txt_t_a;
     }
 
-    public JTextField getTxt_di() {
-        return txt_di;
+    public JTextField getTxt_n_r_l() {
+        return txt_n_r_l;
     }
 
-    public void setTxt_di(JTextField txt_di) {
-        this.txt_di = txt_di;
+    public void setTxt_n_r_l(JTextField txt_n_r_l) {
+        this.txt_n_r_l = txt_n_r_l;
+    }
+
+    public JTextField getTxt_a_r_l() {
+        return txt_a_r_l;
+    }
+
+    public void setTxt_a_r_l(JTextField txt_a_r_l) {
+        this.txt_a_r_l = txt_a_r_l;
     }
 
     public JTextField getTxt_te() {
@@ -79,20 +89,20 @@ public class GestionContableProv {
         this.txt_te = txt_te;
     }
 
-    public JTextField getTxt_cr() {
-        return txt_cr;
+    public JTextField getTxt_cor() {
+        return txt_cor;
     }
 
-    public void setTxt_cr(JTextField txt_cr) {
-        this.txt_cr = txt_cr;
+    public void setTxt_cor(JTextField txt_cor) {
+        this.txt_cor = txt_cor;
     }
 
-    public JTextField getTxt_se() {
-        return txt_se;
+    public JTextField getTxt_di() {
+        return txt_di;
     }
 
-    public void setTxt_se(JTextField txt_se) {
-        this.txt_se = txt_se;
+    public void setTxt_di(JTextField txt_di) {
+        this.txt_di = txt_di;
     }
 
     public Utilidades getUtilidades() {
@@ -111,37 +121,46 @@ public class GestionContableProv {
         this.frameGestionContable = frameGestionContable;
     }
 
+    
+
     public void limpiarProv() {
-        txt_co.setText("");
-        txt_no.setText("");
-        txt_ap.setText("");
-        txt_di.setText("");
+        txt_ruc.setText("");
+        txt_r_s.setText("");
+        txt_t_a.setText("");
+        txt_n_r_l.setText("");
+        txt_a_r_l.setText("");
         txt_te.setText("");
-        txt_cr.setText("");
-        txt_se.setText("");
+        txt_cor.setText("");
+        txt_di.setText("");
     }
 
     public Persona_Prov guardarEditar() {
-        if (txt_co.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(frameGestionContable, "El campo código no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            txt_co.requestFocus();
+        if (txt_ruc.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(frameGestionContable, "El campo ruc no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txt_ruc.requestFocus();
             return null;
         }
-        if (txt_no.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(frameGestionContable, "El campo nombre no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            txt_no.requestFocus();
+        if (txt_r_s.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(frameGestionContable, "El campo razón social no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txt_n_r_l.requestFocus();
             return null;
         }
-        if (txt_ap.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(frameGestionContable, "El campo apellido no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            txt_ap.requestFocus();
+        if (txt_t_a.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(frameGestionContable, "El campo tipo de actividad no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txt_n_r_l.requestFocus();
             return null;
         }
-        if (txt_di.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(frameGestionContable, "El campo dirección no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            txt_di.requestFocus();
+        if (txt_n_r_l.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(frameGestionContable, "El campo Nombre de Representante Legal no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txt_n_r_l.requestFocus();
             return null;
         }
+        if (txt_a_r_l.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(frameGestionContable, "El campo Apellido de Representante Legal no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txt_a_r_l.requestFocus();
+            return null;
+        }
+        
         if (txt_te.getText().isEmpty()) {
             JOptionPane.showMessageDialog(frameGestionContable, "El campo teléfono no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
             txt_te.requestFocus();
@@ -153,32 +172,32 @@ public class GestionContableProv {
             return null;
         }
 
-        if (txt_cr.getText().isEmpty()) {
+        if (txt_cor.getText().isEmpty()) {
             JOptionPane.showMessageDialog(frameGestionContable, "El campo correo no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            txt_cr.requestFocus();
+            txt_cor.requestFocus();
             return null;
 
         }
-        if (!utilidades.checkEmail(txt_cr.getText())) {
+        if (!utilidades.checkEmail(txt_cor.getText())) {
             JOptionPane.showMessageDialog(frameGestionContable, "El correo ingresado no es válido", "ERROR", JOptionPane.ERROR_MESSAGE);
-            txt_cr.requestFocus();
+            txt_cor.requestFocus();
             return null;
         }
-        if (txt_se.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(frameGestionContable, "El campo servicio no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            txt_se.requestFocus();
+        if (txt_di.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(frameGestionContable, "El campo dirección no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txt_di.requestFocus();
             return null;
-
         }
 
         Persona_Prov persona = new Persona_Prov();
-        persona.setCodigo(txt_co.getText());
-        persona.setNombre(txt_no.getText());
-        persona.setApellido(txt_ap.getText());
-        persona.setDireccion(txt_di.getText());
+        persona.setRuc(txt_ruc.getText());
+        persona.setRazon_social(txt_r_s.getText());
+        persona.setTipo_actividad(txt_t_a.getText());
+        persona.setNombre_representante(txt_n_r_l.getText());
+        persona.setApellido_representante(txt_a_r_l.getText());
         persona.setTelefono(txt_te.getText());
-        persona.setCorreo(txt_cr.getText());
-        persona.setServicio(txt_se.getText());
+        persona.setCorreo(txt_cor.getText());
+        persona.setDireccion(txt_di.getText());
         return persona;
     }
 }
