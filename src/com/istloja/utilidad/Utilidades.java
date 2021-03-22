@@ -5,6 +5,8 @@
  */
 package com.istloja.utilidad;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -85,6 +87,7 @@ public class Utilidades {
         return m.matches();
 
     }
+
     public boolean validarCodigo(String numero) {
         try {
             Integer.parseInt(numero);
@@ -95,4 +98,8 @@ public class Utilidades {
         }
     }
 
+    public String formatoDate(Date fecha) {
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        return f.format(fecha);
+    }
 }

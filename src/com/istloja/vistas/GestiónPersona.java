@@ -2,6 +2,8 @@ package com.istloja.vistas;
 
 import com.istloja.modelo.Persona;
 import com.istloja.utilidad.Utilidades;
+import com.toedter.calendar.JDateChooser;import java.util.Date;
+
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,10 +18,11 @@ public class GestiónPersona {
     private JTextField txt_correo;
     private JTextField txt_telefono;
     private JComboBox txt_genero;
+    private JDateChooser JDateFechaNacimiento;
     private Utilidades utilidades;
     private JFrame frameGestionContable;
 
-    public GestiónPersona(JTextField txt_cedula, JTextField txt_nombre, JTextField txt_apellido, JTextField txt_direccion, JTextField txt_correo, JTextField txt_telefono, JComboBox txt_genero, Utilidades utilidades, JFrame frameGestionContable) {
+    public GestiónPersona(JTextField txt_cedula, JTextField txt_nombre, JTextField txt_apellido, JTextField txt_direccion, JTextField txt_correo, JTextField txt_telefono, JComboBox txt_genero, JDateChooser JDateFechaNacimiento, Utilidades utilidades, JFrame frameGestionContable) {
         this.txt_cedula = txt_cedula;
         this.txt_nombre = txt_nombre;
         this.txt_apellido = txt_apellido;
@@ -27,10 +30,10 @@ public class GestiónPersona {
         this.txt_correo = txt_correo;
         this.txt_telefono = txt_telefono;
         this.txt_genero = txt_genero;
+        this.JDateFechaNacimiento = JDateFechaNacimiento;
         this.utilidades = utilidades;
         this.frameGestionContable = frameGestionContable;
     }
-
 
     public JTextField getTxt_cedula() {
         return txt_cedula;
@@ -87,11 +90,19 @@ public class GestiónPersona {
     public void setTxt_genero(JComboBox txt_genero) {
         this.txt_genero = txt_genero;
     }
-    
+
+    public JDateChooser getJDateFechaNacimiento() {
+        return JDateFechaNacimiento;
+    }
+
+    public void setJDateFechaNacimiento(JDateChooser JDateFechaNacimiento) {
+        this.JDateFechaNacimiento = JDateFechaNacimiento;
+    }
+
     public Utilidades getUtilidades() {
         return utilidades;
     }
-    
+
     public void setUtilidades(Utilidades utilidades) {
         this.utilidades = utilidades;
     }
@@ -104,6 +115,8 @@ public class GestiónPersona {
         this.frameGestionContable = frameGestionContable;
     }
 
+
+
     public void limpiar() {
         txt_cedula.setText("");
         txt_nombre.setText("");
@@ -112,18 +125,10 @@ public class GestiónPersona {
         txt_correo.setText("");
         txt_telefono.setText("");
         txt_genero.setSelectedIndex(0);
+        JDateFechaNacimiento.setCalendar(null);
     }
 
-    public Persona guardarEditar() {
-        if (txt_cedula.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(frameGestionContable, "El campo cédula no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            txt_cedula.requestFocus();
-            return null;
-        }
-        if (!utilidades.validadorDeCedula(txt_cedula.getText())) {
-            JOptionPane.showMessageDialog(frameGestionContable, "La cédula ingresada no es válida", "ERROR", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
+    public Persona guardarEditar(boolean isEditar) {
         if (txt_nombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(frameGestionContable, "El campo nombres no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
             txt_nombre.requestFocus();
@@ -168,6 +173,13 @@ public class GestiónPersona {
         persona.setDireccion(txt_direccion.getText());
         persona.setCorreo(txt_correo.getText());
         persona.setTelefono(txt_telefono.getText());
+        persona.setGenero(txt_genero.getSelectedIndex());
+        if (isEditar) {
+            persona.setFechaActualizacion(new Date());
+        } else {
+            persona.setFecha_registro(new Date());
+        }
+        persona.setFechaNacimiento(new Date());
         return persona;
     }
 }

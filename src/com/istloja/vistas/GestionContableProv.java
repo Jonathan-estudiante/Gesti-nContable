@@ -7,6 +7,8 @@ package com.istloja.vistas;
 
 import com.istloja.modelo.Persona_Prov;
 import com.istloja.utilidad.Utilidades;
+import com.toedter.calendar.JDateChooser;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -25,10 +27,11 @@ public class GestionContableProv {
     private JTextField txt_te;
     private JTextField txt_cor;
     private JTextField txt_di;
+    private JDateChooser JDateFechaVencimientoDeuda;
     private Utilidades utilidades;
     private JFrame frameGestionContable;
 
-    public GestionContableProv(JTextField txt_ruc, JTextField txt_r_s, JTextField txt_t_a, JTextField txt_n_r_l, JTextField txt_a_r_l, JTextField txt_te, JTextField txt_cor, JTextField txt_di, Utilidades utilidades, JFrame frameGestionContable) {
+    public GestionContableProv(JTextField txt_ruc, JTextField txt_r_s, JTextField txt_t_a, JTextField txt_n_r_l, JTextField txt_a_r_l, JTextField txt_te, JTextField txt_cor, JTextField txt_di, JDateChooser JDateFechaVencimientoDeuda, Utilidades utilidades, JFrame frameGestionContable) {
         this.txt_ruc = txt_ruc;
         this.txt_r_s = txt_r_s;
         this.txt_t_a = txt_t_a;
@@ -37,6 +40,7 @@ public class GestionContableProv {
         this.txt_te = txt_te;
         this.txt_cor = txt_cor;
         this.txt_di = txt_di;
+        this.JDateFechaVencimientoDeuda = JDateFechaVencimientoDeuda;
         this.utilidades = utilidades;
         this.frameGestionContable = frameGestionContable;
     }
@@ -105,6 +109,14 @@ public class GestionContableProv {
         this.txt_di = txt_di;
     }
 
+    public JDateChooser getJDateFechaVencimientoDeuda() {
+        return JDateFechaVencimientoDeuda;
+    }
+
+    public void setJDateFechaVencimientoDeuda(JDateChooser JDateFechaVencimientoDeuda) {
+        this.JDateFechaVencimientoDeuda = JDateFechaVencimientoDeuda;
+    }
+
     public Utilidades getUtilidades() {
         return utilidades;
     }
@@ -121,8 +133,6 @@ public class GestionContableProv {
         this.frameGestionContable = frameGestionContable;
     }
 
-    
-
     public void limpiarProv() {
         txt_ruc.setText("");
         txt_r_s.setText("");
@@ -132,6 +142,8 @@ public class GestionContableProv {
         txt_te.setText("");
         txt_cor.setText("");
         txt_di.setText("");
+        JDateFechaVencimientoDeuda.setCalendar(null);
+        
     }
 
     public Persona_Prov guardarEditar() {
@@ -198,6 +210,8 @@ public class GestionContableProv {
         persona.setTelefono(txt_te.getText());
         persona.setCorreo(txt_cor.getText());
         persona.setDireccion(txt_di.getText());
+        persona.setFecha_registro(new Date());
+        persona.setFecha_vencimiento_deuda(new Date());
         return persona;
     }
 }

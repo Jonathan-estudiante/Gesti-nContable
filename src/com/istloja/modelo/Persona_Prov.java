@@ -1,5 +1,7 @@
 package com.istloja.modelo;
 
+import java.util.Date;
+
 public class Persona_Prov {
     private int idprov;
     private String ruc;
@@ -10,8 +12,10 @@ public class Persona_Prov {
     private String telefono;
     private String correo;
     private String direccion;
+    private Date fecha_vencimiento_deuda;
+    private Date fecha_registro;
 
-    public Persona_Prov(int idprov, String ruc, String razon_social, String tipo_actividad, String nombre_representante, String apellido_representante, String telefono, String correo, String direccion) {
+    public Persona_Prov(int idprov, String ruc, String razon_social, String tipo_actividad, String nombre_representante, String apellido_representante, String telefono, String correo, String direccion, Date fecha_vencimiento_deuda, Date fecha_registro) {
         this.idprov = idprov;
         this.ruc = ruc;
         this.razon_social = razon_social;
@@ -21,6 +25,8 @@ public class Persona_Prov {
         this.telefono = telefono;
         this.correo = correo;
         this.direccion = direccion;
+        this.fecha_vencimiento_deuda = fecha_vencimiento_deuda;
+        this.fecha_registro = fecha_registro;
     }
 
     public Persona_Prov() {
@@ -98,10 +104,24 @@ public class Persona_Prov {
         this.direccion = direccion;
     }
 
-    @Override
-    public String toString() {
-        return "Persona_Prov{" + "idprov=" + idprov + ", ruc=" + ruc + ", razon_social=" + razon_social + ", tipo_actividad=" + tipo_actividad + ", nombre_representante=" + nombre_representante + ", apellido_representante=" + apellido_representante + ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + '}';
+    public Date getFecha_vencimiento_deuda() {
+        return fecha_vencimiento_deuda;
     }
 
-    
+    public void setFecha_vencimiento_deuda(Date fecha_vencimiento_deuda) {
+        this.fecha_vencimiento_deuda = fecha_vencimiento_deuda;
+    }
+
+    public Date getFecha_registro() {
+        return fecha_registro;
+    }
+
+    public void setFecha_registro(Date fecha_registro) {
+        this.fecha_registro = fecha_registro;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona_Prov{" + "idprov=" + idprov + ", ruc=" + ruc + ", razon_social=" + razon_social + ", tipo_actividad=" + tipo_actividad + ", nombre_representante=" + nombre_representante + ", apellido_representante=" + apellido_representante + ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", fecha_vencimiento_deuda=" + fecha_vencimiento_deuda + ", fecha_registro=" + fecha_registro + '}';
+    }
 }

@@ -3,7 +3,7 @@ package com.istloja.modelo;
 import java.util.Date;
 
 public class Persona {
-   
+
     private int idPersona;
     private String cedula;
     private String nombres;
@@ -13,20 +13,14 @@ public class Persona {
     private String telefono;
     private Date fecha_registro;
     private int genero;
-
-    public Persona(int idPersona, String cedula, String nombres, String apellidos, String direccion, String correo, String telefono, Date fecha_registro, int genero) {
-        this.idPersona = idPersona;
-        this.cedula = cedula;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.direccion = direccion;
-        this.correo = correo;
-        this.telefono = telefono;
-        this.fecha_registro = fecha_registro;
-        this.genero = genero;
-    }
+    private Date fechaActualizacion;
+    private Date fechaNacimiento;
 
     public Persona() {
+    }
+
+    public Persona(int idPersona) {
+        this.idPersona = idPersona;
     }
 
     public int getIdPersona() {
@@ -101,9 +95,25 @@ public class Persona {
         this.genero = genero;
     }
 
+    public Date getFechaActualizacion() {
+        return fechaActualizacion;
+    }
+
+    public void setFechaActualizacion(Date fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
     @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + ", cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + ", fecha_registro=" + fecha_registro + ", genero=" + genero + '}';
+        return "Persona{" + "idPersona=" + idPersona + ", cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + ", fecha_registro=" + fecha_registro + ", genero=" + genero + ", fechaActualizacion=" + fechaActualizacion + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
-    
+
 }
