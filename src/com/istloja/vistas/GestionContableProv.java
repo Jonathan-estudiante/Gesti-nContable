@@ -146,7 +146,7 @@ public class GestionContableProv {
         
     }
 
-    public Persona_Prov guardarEditar() {
+    public Persona_Prov guardarEditar(boolean isEditar) {
         if (txt_ruc.getText().isEmpty()) {
             JOptionPane.showMessageDialog(frameGestionContable, "El campo ruc no tiene datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
             txt_ruc.requestFocus();
@@ -210,7 +210,11 @@ public class GestionContableProv {
         persona.setTelefono(txt_te.getText());
         persona.setCorreo(txt_cor.getText());
         persona.setDireccion(txt_di.getText());
-        persona.setFecha_registro(new Date());
+        if (isEditar) {
+            persona.setFecha_actualización(new Date());
+        } else {
+            persona.setFecha_registro(new Date());
+        }
         persona.setFecha_vencimiento_deuda(new Date());
         return persona;
     }

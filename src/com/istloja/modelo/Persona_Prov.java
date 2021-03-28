@@ -14,8 +14,9 @@ public class Persona_Prov {
     private String direccion;
     private Date fecha_vencimiento_deuda;
     private Date fecha_registro;
+    private Date fecha_actualización;
 
-    public Persona_Prov(int idprov, String ruc, String razon_social, String tipo_actividad, String nombre_representante, String apellido_representante, String telefono, String correo, String direccion, Date fecha_vencimiento_deuda, Date fecha_registro) {
+    public Persona_Prov(int idprov, String ruc, String razon_social, String tipo_actividad, String nombre_representante, String apellido_representante, String telefono, String correo, String direccion, Date fecha_vencimiento_deuda, Date fecha_registro, Date fecha_actualización) {
         this.idprov = idprov;
         this.ruc = ruc;
         this.razon_social = razon_social;
@@ -27,6 +28,7 @@ public class Persona_Prov {
         this.direccion = direccion;
         this.fecha_vencimiento_deuda = fecha_vencimiento_deuda;
         this.fecha_registro = fecha_registro;
+        this.fecha_actualización = fecha_actualización;
     }
 
     public Persona_Prov() {
@@ -120,8 +122,17 @@ public class Persona_Prov {
         this.fecha_registro = fecha_registro;
     }
 
+    public Date getFecha_actualización() {
+        return fecha_actualización;
+    }
+
+    public void setFecha_actualización(Date fecha_actualización) {
+        this.fecha_actualización = fecha_actualización;
+    }
+
     @Override
     public String toString() {
-        return "Persona_Prov{" + "idprov=" + idprov + ", ruc=" + ruc + ", razon_social=" + razon_social + ", tipo_actividad=" + tipo_actividad + ", nombre_representante=" + nombre_representante + ", apellido_representante=" + apellido_representante + ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", fecha_vencimiento_deuda=" + fecha_vencimiento_deuda + ", fecha_registro=" + fecha_registro + '}';
+        return "Persona_Prov{" + "idprov=" + idprov + ", ruc=" + ruc + ", razon_social=" + razon_social + ", tipo_actividad=" + tipo_actividad + ", nombre_representante=" + nombre_representante + ", apellido_representante=" + apellido_representante + ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", fecha_vencimiento_deuda=" + fecha_vencimiento_deuda + ", fecha_registro=" + fecha_registro + ", fecha_actualizaci\u00f3n=" + fecha_actualización + '}';
     }
+
 }

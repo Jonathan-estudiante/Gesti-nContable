@@ -7,6 +7,7 @@ package com.istloja.controlador;
 
 import com.istloja.conexion.BaseDatos;
 import com.istloja.modelo.Inventario;
+import com.istloja.utilidad.Utilidades;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,12 +31,41 @@ public class Inventariobd {
     //Sentencia de JDBC para obtener valores de la base de datos.
     ResultSet rs = null;
 
+    Utilidades  utilidades;
+     public Inventariobd() {
+        utilidades = new Utilidades();
+    }
     //Método para insertar, crear o guardar una persona**************************************************************************
     public boolean crearInventario(Inventario inventario) {
         boolean registrar = false;
-        String sql = "INSERT INTO bdejercicio1.inventario (id_inventario, código_pro, can_productos, descripcion, precio_compra_sin_iva, precio_compra_con_iva,precio_mayorista,precio_cliente_fijo,precio_cliente_normal,fecha_caducidad,fecha_registro, fecha_actualizacion) VALUES('"
-                + inventario.getId_inventario() + "', '" + inventario.getCodigo_pro() + "', '" + inventario.getCan_productos()+ "', '" + inventario.getDescripcion()+ "', '" + inventario.getPrecios_compra_sin_iva()+ "', '" + inventario.getPrecios_compra_con_iva()+"', '"
-                + inventario.getPrecio_mayorista()+ "', '" + inventario.getPrecio_cliente_fijo()+ "', '" + inventario.getPrecio_cliente_normal()+ "', '" + inventario.getFecha_caducidad()+"', '"+inventario.getFecha_registro()+ "', '" + inventario.getFecha_actualizacion()+  "')";
+        String sql;
+
+        if (inventario.getFecha_caducidad() == null) {
+            sql = "INSERT INTO bdejercicio1.inventario (id_inventario, código_pro, can_productos, descripcion, precio_compra_sin_iva, precio_compra_con_iva,precio_mayorista,precio_cliente_fijo,precio_cliente_normal,fecha_registro) VALUES('"
+                    + inventario.getId_inventario() + "', '" 
+                    + inventario.getCodigo_pro() + "', '" 
+                    + inventario.getCan_productos() + "', '" 
+                    + inventario.getDescripcion() + "', '" 
+                    + inventario.getPrecios_compra_sin_iva() + "', '" 
+                    + inventario.getPrecios_compra_con_iva() + "', '"
+                    + inventario.getPrecio_mayorista() + "', '" 
+                    + inventario.getPrecio_cliente_fijo() + "', '" 
+                    + inventario.getPrecio_cliente_normal() + "', '"              
+                    + utilidades.formatoDate(inventario.getFecha_registro()) +  "');";
+        } else {
+            sql = "INSERT INTO bdejercicio1.inventario (id_inventario, código_pro, can_productos, descripcion, precio_compra_sin_iva, precio_compra_con_iva,precio_mayorista,precio_cliente_fijo,precio_cliente_normal,fecha_caducidad,fecha_registro) VALUES('"
+                    + inventario.getId_inventario() + "', '" 
+                    + inventario.getCodigo_pro() + "', '" 
+                    + inventario.getCan_productos() + "', '" 
+                    + inventario.getDescripcion() + "', '" 
+                    + inventario.getPrecios_compra_sin_iva() + "', '" 
+                    + inventario.getPrecios_compra_con_iva() + "', '"
+                    + inventario.getPrecio_mayorista() + "', '" 
+                    + inventario.getPrecio_cliente_fijo() + "', '" 
+                    + inventario.getPrecio_cliente_normal() + "', '" 
+                    + utilidades.formatoDate(inventario.getFecha_caducidad()) + "', '" 
+                    + utilidades.formatoDate(inventario.getFecha_registro()) +  "');";
+        }
         try {
             BaseDatos conexion = new BaseDatos();
             con = conexion.conexion();
@@ -92,11 +122,11 @@ public class Inventariobd {
     public boolean actualizarInventario(Inventario inventario) {
         boolean registrar = false;
 
-        String sql = "UPDATE inventario SET código_pro = '" + inventario.getCodigo_pro() + "', can_productos = '" + inventario.getCan_productos()+ "',descripcion = '" + inventario.getDescripcion()
-                + "', precio_compra_sin_iva= '" + inventario.getPrecios_compra_sin_iva()+ "', precio_compra_con_iva = '" + inventario.getPrecios_compra_con_iva()+ "', precio_mayorista = '"
-                + inventario.getPrecio_mayorista()+ "', precio_cliente_fijo= '" + inventario.getPrecio_cliente_fijo()+ "', precio_cliente_normal = '" + inventario.getPrecio_cliente_normal()
-                + "', fecha_caducidad = '" + inventario.getFecha_caducidad()+ "', fecha_registro= '" + inventario.getFecha_registro()+ "', fecha_actualizacion = '" 
-                + inventario.getFecha_actualizacion()+ "'WHERE id_inventario =" + inventario.getId_inventario();
+        String sql = "UPDATE inventario SET código_pro = '" + inventario.getCodigo_pro() + "', can_productos = '" + inventario.getCan_productos() + "',descripcion = '" + inventario.getDescripcion()
+                + "', precio_compra_sin_iva= '" + inventario.getPrecios_compra_sin_iva() + "', precio_compra_con_iva = '" + inventario.getPrecios_compra_con_iva() + "', precio_mayorista = '"
+                + inventario.getPrecio_mayorista() + "', precio_cliente_fijo= '" + inventario.getPrecio_cliente_fijo() + "', precio_cliente_normal = '" + inventario.getPrecio_cliente_normal()
+                + "', fecha_caducidad = '" + inventario.getFecha_caducidad() + "', fecha_registro= '" + inventario.getFecha_registro() + "', fecha_actualizacion = '"
+                + inventario.getFecha_actualizacion() + "'WHERE id_inventario =" + inventario.getId_inventario();
         try {
             BaseDatos conexion = new BaseDatos();
             con = conexion.conexion();

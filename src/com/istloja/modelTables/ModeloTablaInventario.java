@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class ModeloTablaInventario extends AbstractTableModel {
 
-    public String[] m_colNames = {"CÓDIGO", "CANTIDAD", "DESCRIPCIÓN", "PRECIO COMPRA SIN IVA", "PRECIO COMPRA CON IVA", "PRECIO MAYORISTA", "PRECIO CLIENTE FIJO", "PRECIO CLIENTE NORMAL", "PRECIO CADUCIDAD", "PRECIO REGISTRO", "PRECIO ACTUALIZACIÓN"};
+    public String[] m_colNames = {"CÓDIGO", "CANTIDAD", "DESCRIPCIÓN", "PRECIO COMPRA SIN IVA", "PRECIO COMPRA CON IVA", "PRECIO MAYORISTA", "PRECIO CLIENTE FIJO", "PRECIO CLIENTE NORMAL", "PRECIO CADUCIDAD"};
     public List<Inventario> inventarios;
     private final GestionContable gestionContable;
 
@@ -55,10 +55,6 @@ public class ModeloTablaInventario extends AbstractTableModel {
                 return inventario.getPrecio_cliente_normal();
             case 8:
                 return inventario.getFecha_caducidad();
-            case 9:
-                return inventario.getFecha_registro();
-            case 10:
-                return inventario.getFecha_actualizacion();
         }
         return new String();
     }

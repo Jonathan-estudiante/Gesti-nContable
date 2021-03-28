@@ -31,7 +31,7 @@ public class PersonabdProv {
         boolean registrar = false;
         String sql;
         if (persona_p.getFecha_vencimiento_deuda() == null) {
-            sql = "INSERT INTO bdejercicio1.proveedores (id_proveedores, ruc, razon_social, tipo_actividad, nombre_representante_legal, apellido_representante_legal, telefono, correo, direccion,fecha_registro) VALUES('"
+            sql = "INSERT INTO `bdejercicio1`.`proveedores` (`id_proveedores`,`ruc`, `razon_social`, `tipo_actividad`, `nombre_representante_legal`, `apellido_representante_legal`, `telefono`, `correo`, `direccion`, `fecha_registro`) VALUES ('"
                     + String.valueOf(persona_p.getIdprov()) + "', '"
                     + persona_p.getRuc() + "', '"
                     + persona_p.getRazon_social() + "', '"
@@ -43,7 +43,7 @@ public class PersonabdProv {
                     + persona_p.getDireccion() + "','"
                     + utilidades.formatoDate(persona_p.getFecha_registro()) + "');";
         } else {
-            sql = "INSERT INTO bdejercicio1.proveedores (id_proveedores, ruc, razon_social, tipo_actividad, nombre_representante_legal, apellido_representante_legal, telefono, correo, direccion,fecha_registro,fecha_vencimiento_deuda) VALUES('"
+            sql = "INSERT INTO `bdejercicio1`.`proveedores` (`id_proveedores`,`ruc`, `razon_social`, `tipo_actividad`, `nombre_representante_legal`, `apellido_representante_legal`, `telefono`, `correo`, `direccion`, `fecha_registro`,`fecha_vencimiento_deuda`) VALUES ('"
                     + String.valueOf(persona_p.getIdprov()) + "', '"
                     + persona_p.getRuc() + "', '"
                     + persona_p.getRazon_social() + "', '"
@@ -91,14 +91,15 @@ public class PersonabdProv {
                 c.setCorreo(rs.getString(8));
                 c.setDireccion(rs.getString(9));
                 c.setFecha_registro(rs.getDate(10));
-                c.setFecha_vencimiento_deuda(rs.getDate(11));
+                c.setFecha_actualización(rs.getDate(11));
+                c.setFecha_vencimiento_deuda(rs.getDate(12));
 
             }
             stm.close();
             rs.close();
             con.close();
         } catch (SQLException e) {
-            System.out.println("Error:" + e.getMessage());
+            System.out.println("Error al buscar el código:" + e.getMessage());
         }
         return c;
     }
@@ -125,7 +126,8 @@ public class PersonabdProv {
                 p.setCorreo(rs.getString(8));
                 p.setDireccion(rs.getString(9));
                 p.setFecha_registro(rs.getDate(10));
-                p.setFecha_vencimiento_deuda(rs.getDate(11));
+                p.setFecha_actualización(rs.getDate(11));
+                p.setFecha_vencimiento_deuda(rs.getDate(12));
                 listapersona.add(p);
             }
             stm.close();
@@ -133,7 +135,7 @@ public class PersonabdProv {
             con.close();
 
         } catch (SQLException e) {
-            System.out.println("Error" + e.getMessage());
+            System.out.println("Error al mostrar" + e.getMessage());
 
         }
         return listapersona;
@@ -143,10 +145,18 @@ public class PersonabdProv {
     public boolean actualizarPersona(Persona_Prov persona) {
         boolean registrar = false;
 
-        String sql = "UPDATE proveedores SET ruc = '" + persona.getRuc() + "', razon_social = '" + persona.getRazon_social() + "',tipo_actividad = '"
-                + persona.getTipo_actividad() + "', nombre_representante_legal= '" + persona.getNombre_representante() + "', apellido_representante_legal = '"
-                + persona.getApellido_representante() + "', telefono = '" + persona.getTelefono() + "', correo = '" + persona.getCorreo() + "', direccion = '"
-                + persona.getDireccion() + "'WHERE id_proveedores =" + String.valueOf(persona.getIdprov());
+        String sql = "UPDATE proveedores SET ruc = '" + persona.getRuc() 
+                + "', razon_social = '" + persona.getRazon_social() 
+                + "',tipo_actividad = '" + persona.getTipo_actividad() 
+                + "', nombre_representante_legal= '" + persona.getNombre_representante() 
+                + "', apellido_representante_legal = '" + persona.getApellido_representante() 
+                + "', telefono = '" + persona.getTelefono() 
+                + "', correo = '" + persona.getCorreo() 
+                + "', direccion = '" + persona.getDireccion()
+                + "', fecha_registro = '" + utilidades.formatoDate(persona.getFecha_registro())
+                + "', fecha_actualizacion = '" + utilidades.formatoDate(persona.getFecha_actualización())
+                + "', fecha_vencimiento_deuda = '" + utilidades.formatoDate(persona.getFecha_vencimiento_deuda())
+                + "'WHERE id_proveedores =" + String.valueOf(persona.getIdprov());
         try {
             BaseDatos conexion = new BaseDatos();
             con = conexion.conexion();
@@ -200,7 +210,8 @@ public class PersonabdProv {
                 c.setCorreo(rs.getString(8));
                 c.setDireccion(rs.getString(9));
                 c.setFecha_registro(rs.getDate(10));
-                c.setFecha_vencimiento_deuda(rs.getDate(11));
+                c.setFecha_actualización(rs.getDate(11));
+                c.setFecha_vencimiento_deuda(rs.getDate(12));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -232,7 +243,8 @@ public class PersonabdProv {
                 c.setCorreo(rs.getString(8));
                 c.setDireccion(rs.getString(9));
                 c.setFecha_registro(rs.getDate(10));
-                c.setFecha_vencimiento_deuda(rs.getDate(11));
+                c.setFecha_actualización(rs.getDate(11));
+                c.setFecha_vencimiento_deuda(rs.getDate(12));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -264,7 +276,8 @@ public class PersonabdProv {
                 c.setCorreo(rs.getString(8));
                 c.setDireccion(rs.getString(9));
                 c.setFecha_registro(rs.getDate(10));
-                c.setFecha_vencimiento_deuda(rs.getDate(11));
+                c.setFecha_actualización(rs.getDate(11));
+                c.setFecha_vencimiento_deuda(rs.getDate(12));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -296,7 +309,8 @@ public class PersonabdProv {
                 c.setCorreo(rs.getString(8));
                 c.setDireccion(rs.getString(9));
                 c.setFecha_registro(rs.getDate(10));
-                c.setFecha_vencimiento_deuda(rs.getDate(11));
+                c.setFecha_actualización(rs.getDate(11));
+                c.setFecha_vencimiento_deuda(rs.getDate(12));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -328,7 +342,8 @@ public class PersonabdProv {
                 c.setCorreo(rs.getString(8));
                 c.setDireccion(rs.getString(9));
                 c.setFecha_registro(rs.getDate(10));
-                c.setFecha_vencimiento_deuda(rs.getDate(11));
+                c.setFecha_actualización(rs.getDate(11));
+                c.setFecha_vencimiento_deuda(rs.getDate(12));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -360,7 +375,8 @@ public class PersonabdProv {
                 c.setCorreo(rs.getString(8));
                 c.setDireccion(rs.getString(9));
                 c.setFecha_registro(rs.getDate(10));
-                c.setFecha_vencimiento_deuda(rs.getDate(11));
+                c.setFecha_actualización(rs.getDate(11));
+                c.setFecha_vencimiento_deuda(rs.getDate(12));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -392,7 +408,8 @@ public class PersonabdProv {
                 c.setCorreo(rs.getString(8));
                 c.setDireccion(rs.getString(9));
                 c.setFecha_registro(rs.getDate(10));
-                c.setFecha_vencimiento_deuda(rs.getDate(11));
+                c.setFecha_actualización(rs.getDate(11));
+                c.setFecha_vencimiento_deuda(rs.getDate(12));
                 proveedoresEncontrados.add(c);
             }
             stm.close();

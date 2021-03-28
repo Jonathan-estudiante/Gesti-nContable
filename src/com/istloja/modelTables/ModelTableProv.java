@@ -12,7 +12,7 @@ public class ModelTableProv extends AbstractTableModel {
     public List<Persona_Prov> personas;
 
     private ComunicacionPersona comunicacionPersona;
-    private GestionContable gestionContable;
+    private final GestionContable gestionContable;
 
     public ModelTableProv(List<Persona_Prov> personas, GestionContable gestionContable) {
         this.personas = personas;
@@ -68,7 +68,7 @@ public class ModelTableProv extends AbstractTableModel {
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         gestionContable.clickPersonap(personas.get(rowIndex));
-        return super.isCellEditable(rowIndex, columnIndex);//To change body of generated methods, choose Tools | Templates.
+        return super.isCellEditable(rowIndex, columnIndex);
     }
 
     public List<Persona_Prov> getPersonas() {

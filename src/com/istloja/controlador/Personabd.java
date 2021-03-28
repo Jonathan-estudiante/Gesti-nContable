@@ -40,8 +40,8 @@ public class Personabd {
                     + persona.getDireccion() + "', '" 
                     + persona.getCorreo() + "', '"      
                     + persona.getTelefono() + "', '" 
-                    + utilidades.formatoDate(persona.getFecha_registro()) 
-                    + "', '" + persona.getGenero() + "');";
+                    + utilidades.formatoDate(persona.getFecha_registro())+ "', '" 
+                    + persona.getGenero() + "');";
 
         } else {
             sql = "INSERT INTO `bdejercicio1`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`, `fecha_nacimiento`) VALUES ('"
@@ -101,7 +101,7 @@ public class Personabd {
             con.close();
 
         } catch (SQLException e) {
-            System.out.println("Error" + e.getMessage());
+            System.out.println("Error  " + e.getMessage());
 
         }
         return listapersona;
@@ -111,10 +111,15 @@ public class Personabd {
     public boolean actualizarPersona(Persona persona) {
         boolean registrar = false;
 
-        String sql = "UPDATE persona SET cedula = '" + persona.getCedula() + "', nombres = '" + persona.getNombres()
-                + "',apellidos = '" + persona.getApellidos() + "', direccion= '" + persona.getDireccion() + "', correo = '"
-                + persona.getCorreo() + "', telefono = '" + persona.getTelefono() + "', fecha_registro = '" + persona.getFecha_registro()
-                + "', genero = '" + persona.getGenero() + "', fecha_actualizacion = '" + utilidades.formatoDate(persona.getFechaActualizacion())
+        String sql = "UPDATE persona SET cedula = '" + persona.getCedula() 
+                + "', nombres = '" + persona.getNombres()
+                + "',apellidos = '" + persona.getApellidos() 
+                + "', direccion= '" + persona.getDireccion() 
+                + "', correo = '" + persona.getCorreo() 
+                + "', telefono = '" + persona.getTelefono() 
+                + "', fecha_registro = '" + persona.getFecha_registro()
+                + "', genero = '" + persona.getGenero() 
+                + "', fecha_actualizacion = '" + utilidades.formatoDate(persona.getFechaActualizacion())
                 + "'WHERE idpersona =" + String.valueOf(persona.getIdPersona());
         try {
             BaseDatos conexion = new BaseDatos();
