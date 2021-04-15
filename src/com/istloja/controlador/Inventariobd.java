@@ -7,6 +7,7 @@ package com.istloja.controlador;
 
 import com.istloja.conexion.BaseDatos;
 import com.istloja.modelo.Inventario;
+import com.istloja.modelo.Persona;
 import com.istloja.utilidad.Utilidades;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -323,5 +324,36 @@ public class Inventariobd {
             System.out.println("Error:" + e.getMessage());
         }
         return inventarioEncontradas;
+    }
+        public Inventario obtenerCodigoInventario(String codigo) {
+        Inventario i = null;
+        String sql = "SELECT * FROM bdejercicio1.inventario WHERE código_pro = '" + codigo + "';";
+        try {
+            con = new BaseDatos().conexion();
+            stm = con.createStatement();
+            rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                i = new Inventario();
+                i.setId_inventario(rs.getInt(1));
+                i.setCodigo_pro(rs.getString(2));
+                i.setCan_productos(rs.getInt(3));
+                i.setDescripcion(rs.getString(4));
+                i.setPrecios_compra_sin_iva(rs.getDouble(5));
+                i.setPrecios_compra_con_iva(rs.getDouble(6));
+                i.setPrecio_mayorista(rs.getDouble(7));
+                i.setPrecio_cliente_fijo(rs.getDouble(8));
+                i.setPrecio_cliente_normal(rs.getDouble(9));
+                i.setFecha_caducidad(rs.getDate(10));
+                i.setFecha_registro(rs.getDate(11));
+                i.setFecha_actualizacion(rs.getDate(12));
+
+            }
+            stm.close();
+            rs.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error al buscar codigo en Inventariobd:" + e.getMessage());
+        }
+        return i;
     }
 }

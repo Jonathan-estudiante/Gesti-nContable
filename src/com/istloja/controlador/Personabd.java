@@ -33,27 +33,27 @@ public class Personabd {
         boolean registrar = false;
         String sql;
         if (persona.getFechaNacimiento() == null) {
-            sql = "INSERT INTO `bdejercicio1`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`) VALUES ('" 
-                    + persona.getCedula() + "', '" 
-                    + persona.getNombres() + "', '" 
-                    + persona.getApellidos() + "', '" 
-                    + persona.getDireccion() + "', '" 
-                    + persona.getCorreo() + "', '"      
-                    + persona.getTelefono() + "', '" 
-                    + utilidades.formatoDate(persona.getFecha_registro())+ "', '" 
+            sql = "INSERT INTO `bdejercicio1`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`) VALUES ('"
+                    + persona.getCedula() + "', '"
+                    + persona.getNombres() + "', '"
+                    + persona.getApellidos() + "', '"
+                    + persona.getDireccion() + "', '"
+                    + persona.getCorreo() + "', '"
+                    + persona.getTelefono() + "', '"
+                    + utilidades.formatoDate(persona.getFecha_registro()) + "', '"
                     + persona.getGenero() + "');";
 
         } else {
             sql = "INSERT INTO `bdejercicio1`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`, `fecha_nacimiento`) VALUES ('"
-                    + persona.getCedula() + "', '" 
-                    + persona.getNombres() + "', '" 
-                    + persona.getApellidos() + "', '" 
-                    + persona.getDireccion() + "', '" 
-                    + persona.getCorreo() + "', '" 
-                    + persona.getTelefono() + "', '" 
-                    + utilidades.formatoDate(persona.getFecha_registro()) + "', '" 
-                    + persona.getGenero() + "', '" 
-                    + utilidades.formatoDate(persona.getFechaNacimiento())+"');";
+                    + persona.getCedula() + "', '"
+                    + persona.getNombres() + "', '"
+                    + persona.getApellidos() + "', '"
+                    + persona.getDireccion() + "', '"
+                    + persona.getCorreo() + "', '"
+                    + persona.getTelefono() + "', '"
+                    + utilidades.formatoDate(persona.getFecha_registro()) + "', '"
+                    + persona.getGenero() + "', '"
+                    + utilidades.formatoDate(persona.getFechaNacimiento()) + "');";
 
         }
         try {
@@ -111,14 +111,14 @@ public class Personabd {
     public boolean actualizarPersona(Persona persona) {
         boolean registrar = false;
 
-        String sql = "UPDATE persona SET cedula = '" + persona.getCedula() 
+        String sql = "UPDATE persona SET cedula = '" + persona.getCedula()
                 + "', nombres = '" + persona.getNombres()
-                + "',apellidos = '" + persona.getApellidos() 
-                + "', direccion= '" + persona.getDireccion() 
-                + "', correo = '" + persona.getCorreo() 
-                + "', telefono = '" + persona.getTelefono() 
+                + "',apellidos = '" + persona.getApellidos()
+                + "', direccion= '" + persona.getDireccion()
+                + "', correo = '" + persona.getCorreo()
+                + "', telefono = '" + persona.getTelefono()
                 + "', fecha_registro = '" + persona.getFecha_registro()
-                + "', genero = '" + persona.getGenero() 
+                + "', genero = '" + persona.getGenero()
                 + "', fecha_actualizacion = '" + utilidades.formatoDate(persona.getFechaActualizacion())
                 + "'WHERE idpersona =" + String.valueOf(persona.getIdPersona());
         try {

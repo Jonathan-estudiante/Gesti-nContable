@@ -3,24 +3,32 @@ package com.istloja.modelo;
 import java.util.Date;
 
 public class Nota_Venta {
-  private int  id_nota_venta;
-  private String numero_nota_ventas;
-  private int persona_id_persona;
-  private Date fecha_venta;
-  private double sub_total;
-  private double iva;
-  private double total;
-  private int tipo_pago;
 
-    public Nota_Venta(int id_nota_venta, String numero_nota_ventas, int persona_id_persona, Date fecha_venta, double sub_total, double iva, double total, int tipo_pago) {
+    private int id_nota_venta;
+    private String numero_nota_ventas;
+    private int persona_id_persona;
+    private Date fecha_venta;
+    private int cantidad;
+    private double sub_total;
+    private double iva;
+    private double total;
+    private int tipo_pago;
+    private String descripcion;
+
+    public Nota_Venta(int id_nota_venta, String numero_nota_ventas, int persona_id_persona, Date fecha_venta, int cantidad, double sub_total, double iva, double total, int tipo_pago, String descripcion) {
         this.id_nota_venta = id_nota_venta;
         this.numero_nota_ventas = numero_nota_ventas;
         this.persona_id_persona = persona_id_persona;
         this.fecha_venta = fecha_venta;
+        this.cantidad = cantidad;
         this.sub_total = sub_total;
         this.iva = iva;
         this.total = total;
         this.tipo_pago = tipo_pago;
+        this.descripcion = descripcion;
+    }
+
+    public Nota_Venta() {
     }
 
     public int getId_nota_venta() {
@@ -55,6 +63,14 @@ public class Nota_Venta {
         this.fecha_venta = fecha_venta;
     }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
     public double getSub_total() {
         return sub_total;
     }
@@ -87,9 +103,16 @@ public class Nota_Venta {
         this.tipo_pago = tipo_pago;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     @Override
     public String toString() {
-        return "Nota_Venta{" + "id_nota_venta=" + id_nota_venta + ", numero_nota_ventas=" + numero_nota_ventas + ", persona_id_persona=" + persona_id_persona + ", fecha_venta=" + fecha_venta + ", sub_total=" + sub_total + ", iva=" + iva + ", total=" + total + ", tipo_pago=" + tipo_pago + '}';
+        return "Nota_Venta{" + "id_nota_venta=" + id_nota_venta + ", numero_nota_ventas=" + numero_nota_ventas + ", persona_id_persona=" + persona_id_persona + ", fecha_venta=" + fecha_venta + ", cantidad=" + cantidad + ", sub_total=" + sub_total + ", iva=" + iva + ", total=" + total + ", tipo_pago=" + tipo_pago + ", descripcion=" + descripcion + '}';
     }
-  
 }

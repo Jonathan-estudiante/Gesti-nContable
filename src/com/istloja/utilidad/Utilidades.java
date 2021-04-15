@@ -109,8 +109,18 @@ public class Utilidades {
 
         DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
         separadoresPersonalizados.setDecimalSeparator('.');
+        separadoresPersonalizados.setDecimalSeparator(',');
 
-        DecimalFormat d = new DecimalFormat("#.##" , separadoresPersonalizados);
+        DecimalFormat d = new DecimalFormat("#.##", separadoresPersonalizados);
         return d.format(decimal);
+    }
+
+    public String formatoDateTime(Date fecha) {
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
+        return f.format(fecha);
+    }
+
+    public double dosDecimales(double entrada) {
+        return Math.round(entrada * 100.0) / 100.0;
     }
 }

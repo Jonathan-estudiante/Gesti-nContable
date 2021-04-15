@@ -1,4 +1,4 @@
-package com.istloja.vistas;
+ package com.istloja.vistas;
 
 import com.istloja.modelo.Persona;
 import com.istloja.utilidad.Utilidades;
